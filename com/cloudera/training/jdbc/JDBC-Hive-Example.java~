@@ -2,7 +2,7 @@ package com.cloudera.training.jdbc;
 
 import java.sql.*;
 
-public class JDBC-Hive-Example {
+public class JDBC-Hive-Example2 {
     public static void main(String[] args) throws Exception {
         /*
         ** Step 1: Load the driver class
@@ -13,7 +13,7 @@ public class JDBC-Hive-Example {
         **
         */
         //String driverName = "sun.jdbc.odbc.JdbcOdbcDriver";
-        String driverName = "org.apache.hive.jdbc.HiveDriver";
+        String driverName = "com.imaginary.sql.msql.MsqlDriver";
         Class.forName(driverName);
 
         /*
@@ -23,16 +23,14 @@ public class JDBC-Hive-Example {
         ** 
         */ 
         //String databaseLocation = "jdbc:odbc:Coffees.mdb";
-        // for Impala, use the following URL:
-        // String databaseLocation = "jdbc:hive2://localhost:21050/default;auth=noSasl";
-        String databaseLocation = "jdbc:hive2://localhost:10000/default";
+        String databaseLocation = "jdbc:msql://localhost:4333/le-shop";
 
         /*
         ** Step 3: Get a Connection from the DriverManager class.
         ** 
         */ 
         Connection dbConnection;
-        dbConnection = DriverManager.getConnection(databaseLocation, "training", "");
+        dbConnection = DriverManager.getConnection(databaseLocation);
 
         /*
         ** Step 4: Create a Statement for use with the database.
@@ -62,7 +60,7 @@ public class JDBC-Hive-Example {
         ** 
         */ 
         ResultSet result;
-        String queryString = "SHOW TABLES";
+        String queryString = "SELECT * FROM COFFEES";
         result = sqlStatement.executeQuery(queryString);
 
         /*
@@ -85,13 +83,10 @@ public class JDBC-Hive-Example {
         **
         */ 
         while(result.next()) {
-            System.out.println(result.getString(1));
-            /*
             System.out.println("Coffee: "+result.getString(1));
             System.out.println("Supplier: "+result.getString(2));
             System.out.println("Price: "+result.getString(3));
             System.out.println("Sales: "+result.getString(4));
-             */
         }
 
         /*
