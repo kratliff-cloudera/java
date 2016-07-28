@@ -2,7 +2,7 @@ package com.cloudera.training.jdbc;
 
 import java.sql.*;
 
-public class JDBC-Hive-Example {
+public class JDBCHiveExample {
     public static void main(String[] args) throws Exception {
         /*
         ** Step 1: Load the driver class
